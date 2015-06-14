@@ -14,23 +14,31 @@ class Image
 	end
 
 
-	def get_popular
-		parse_insatgram
+	def get_images
+		parse_instagram
 		
 		@array = []
 		@children = @json["data"].count
 
 		@children.times do |child|
 			@array << @json["data"][child]["images"]["standard_resolution"]["url"]
+			#@array << @json["data"][child]["link"]
 		end
 
 		@array
 	end
 
 	def parse_instagram
-		@link = "https://api.instagram.com/v1/media/popular?access_token=#{@ACCESS_TOKEN}"
+		@search = Location::GoogleAPI.new
+		@location = @search.set_location("1341 Clifton Street NW DC")
+		@link = "https://api.instagram.com/v1/media/search?lat=#{@location[:lat]}&lng=#{@location[:lng]}&access_token=#{@ACCESS_TOKEN}"
 		@data = open(@link).read
 		@json = JSON.parse(@data)
+	end
+
+	def link_option
+		@link = "https://api.instagram.com/v1/media/popular?access_token=#{@ACCESS_TOKEN}"
+
 	end
 
 end	
