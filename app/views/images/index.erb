@@ -1,0 +1,12 @@
+<%= form_tag(images_path, method: "get") do %>
+	<%= text_field_tag :location, params[:location] %>
+	<%= submit_tag "Search", name: nil %>
+<% end %>
+
+<%= debug @params %>
+
+<% @images.each do |image| %>
+	<%=image_tag image %>
+<% end %>
+
+

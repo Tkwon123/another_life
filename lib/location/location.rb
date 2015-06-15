@@ -5,11 +5,11 @@ module Location
 	class GoogleAPI
 		def initialize
 			@root = "https://maps.googleapis.com/maps/api/geocode/json?address="
-
 		end
 
 		def set_location(address)
-			@search = address.sub! ' ', '+'
+			@search = address
+			@search.sub! ' ', '+'
 			@request_url = @root + @search
 			fetch_data
 		end

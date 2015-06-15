@@ -2,7 +2,8 @@ require 'open-uri'
 require 'json'
 
 class Image
-	def initialize
+	def initialize(options = {})
+		@location = options[:location] || 'Washington DC'
 		@CLIENT_ID = '1fd38795363d4d3ea1889a73bb073d0a'
 		@CLIENT_SECRET = '113832cde77a49ec91657f8f716a6236'
 		#@ACCESS_TOKEN = '1602344324.1fb234f.5a9b17863e9f4642a2edab6f6126e566'
@@ -15,7 +16,7 @@ class Image
 
 
 	def get_images
-		parse_instagram
+		parse_instagram(@location)
 		
 		@array = []
 		@children = @json["data"].count
@@ -28,10 +29,12 @@ class Image
 		@array
 	end
 
-	def parse_instagram
+	def parse_instagram(location)
 		@search = Location::GoogleAPI.new
-		@location = @search.set_location("1341 Clifton Street NW DC")
-		@link = "https://api.instagram.com/v1/media/search?lat=#{@location[:lat]}&lng=#{@location[:lng]}&access_token=#{@ACCESS_TOKEN}"
+		@location_data = @search.set_location(location)
+		puts @location_data
+		@link = "https://api.instagram.com/v1/media/search?lat=#{@location_data[:lat]}&lng=#{@location_data[:lng]}&access_token=#{@ACCESS_TOKEN}"
+		puts @link
 		@data = open(@link).read
 		@json = JSON.parse(@data)
 	end
