@@ -4,10 +4,10 @@ require 'json'
 class Image
 	def initialize(options = {})
 		@location = options[:location] || 'Washington DC'
-		@CLIENT_ID = '1fd38795363d4d3ea1889a73bb073d0a'
-		@CLIENT_SECRET = '113832cde77a49ec91657f8f716a6236'
+		@CLIENT_ID 	=  Rails.application.secrets.CLIENT_ID
+		@CLIENT_SECRET = Rails.application.secrets.CLIENT_SECRET
 		#@ACCESS_TOKEN = '1602344324.1fb234f.5a9b17863e9f4642a2edab6f6126e566'
-		@ACCESS_TOKEN = '1602344324.1fd3879.532a2134461846b2b36afe023407807a'
+		@ACCESS_TOKEN = Rails.application.secrets.ACCESS_TOKEN
 	end
 
 	def example
