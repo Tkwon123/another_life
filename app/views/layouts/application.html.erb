@@ -10,15 +10,18 @@
 <body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container-fluid">
-		<div class="navbar-nav">
-			<div class="row">
-				<h1 class='title'> another life </h1>
-				<%= form_tag(images_path, method: "get") do %>
-					<%= text_field_tag :location, params[:location], placeholder:"City, State, or Country" %>
-					<%= submit_tag "Search Location", name: nil %>
-				<% end %>
+			<div class="navbar-nav">
+				<div class="row">
+					<h1 class='title'> another life </h1>
+					<p>
+					<%= form_tag(images_path, method: "get") do %>
+						<%= text_field_tag :location, params[:location], placeholder:"City, State, or Country" %>
+						<%= submit_tag "Search Location", name: nil %>
+					<% end %>
+					</p>
+				</div>
 			</div>
-		</div>
+
 
 	</div>
 </div>
