@@ -1,12 +1,23 @@
-<%= form_tag(images_path, method: "get") do %>
-	<%= text_field_tag :location, params[:location] %>
-	<%= submit_tag "Search", name: nil %>
+<div class="centerize">
+	<%= form_tag(images_path, method: "get") do %>
+		<%= text_field_tag :location, params[:location], placeholder:"City, State, or Country" %>
+	<%= submit_tag "Search Location", name: nil %>
+</div>
+
+
 <% end %>
 
-<%= debug @params %>
 
-<% @images.each do |image| %>
-	<%=image_tag image %>
-<% end %>
+<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
+	<div class="centerize-image">
+		
+		<% @images.each do |image| %>
+			<div class="box panel panel-default">
+				<div class="image-container">
+					<%=image_tag image %>
+				</div>
+			</div>
+		<% end %>
+	</div>
 
-
+</div>
