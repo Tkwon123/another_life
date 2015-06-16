@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AnotherLife</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+	<title>AnotherLife</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,100italic' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<div class="navbar navbar-default" role="navigation">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
 		<div class="navbar-nav">
-				<h1> Another Life </h1>
+			<div class="row">
+				<h1 class='title'> another life </h1>
+				<%= form_tag(images_path, method: "get") do %>
+					<%= text_field_tag :location, params[:location], placeholder:"City, State, or Country" %>
+					<%= submit_tag "Search Location", name: nil %>
+				<% end %>
+			</div>
 		</div>
+
 	</div>
 </div>
 
-	<div class="container-fluid">
-			<%= yield %>
-	</div>
+<div class="container-fluid">
+		<%= yield %>
+</div>
 
 </body>
 </html>
