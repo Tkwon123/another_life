@@ -22,8 +22,8 @@ class Image
 		@children = @json["data"].count
 
 		@children.times do |child|
-			@array << @json["data"][child]["images"]["standard_resolution"]["url"]
-			#@array << @json["data"][child]["link"]
+			@array << [@json["data"][child]["images"]["standard_resolution"]["url"], @json["data"][child]["link"], @json["data"][child]["caption"]]
+			#@array << @json["data"][child]["link"]@children.times do |child|
 		end
 
 		@array
@@ -32,9 +32,7 @@ class Image
 	def parse_instagram(location)
 		@search = Location::GoogleAPI.new
 		@location_data = @search.set_location(location)
-		puts @location_data
 		@link = "https://api.instagram.com/v1/media/search?lat=#{@location_data[:lat]}&lng=#{@location_data[:lng]}&access_token=#{@ACCESS_TOKEN}"
-		puts @link
 		@data = open(@link).read
 		@json = JSON.parse(@data)
 	end

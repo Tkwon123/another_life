@@ -10,14 +10,17 @@
 		<br>
 		<br>
 		<br>
-		
-		<% @images.each do |image| %>
-			<div class="box panel panel-default">
-				<div class="image-container">
-					<%=image_tag image %>
-				</div>
+		<% @count.times do |count| %>
+		<div class="box panel panel-default">
+			<div class="image-container">
+				<%=link_to image_tag(@images[count][0]), @images[count][1] %>
 			</div>
+			<div class="panel-footer centerize">
+				<% unless @images[count][2].nil? %>
+					<p><strong><%= @images[count][2]["text"] %><strong></p>
+				<% end %>
+			</div>
+		</div>
 		<% end %>
 	</div>
-
 </div>
