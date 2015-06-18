@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
-  root 'images#index'
-  resources 'images'
+  root 'images#image'
+  get 'images', to: 'images#index'
+  get 'images/:page', to: 'images#image', as: 'show_image'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -14,7 +14,7 @@
 				<div class="row">
 					<h1 class='title'> another life </h1>
 					<p>
-					<%= form_tag(images_path, method: "get") do %>
+					<%= form_tag(show_image_path(@last_time), method: "get") do %>
 						<%= text_field_tag :location, params[:location], placeholder:"City, State, or Country" %>
 						<%= submit_tag "Search Location", name: nil %>
 					<% end %>
