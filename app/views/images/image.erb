@@ -19,8 +19,7 @@
 		</div>
 	<% end %>
 	
-<div class="centerize">
-	<%= link_to('MOAR', show_image_path(@last_time)) %>
-</div>
+	<br>
+	<h3 class='centerize'><strong><%= link_to('MOAR', show_image_path(@last_time, params[:location])) %></strong></h3>
 
 </div>

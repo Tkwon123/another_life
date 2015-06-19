@@ -4,6 +4,7 @@ require 'json'
 class Image
 	def initialize(options = {})
 		@location = options[:location] || 'Washington DC'
+		@last_time = options[:last_time]
 		@CLIENT_ID 	=  Rails.application.secrets.CLIENT_ID
 		@CLIENT_SECRET = Rails.application.secrets.CLIENT_SECRET
 		#@ACCESS_TOKEN = '1602344324.1fb234f.5a9b17863e9f4642a2edab6f6126e566'
@@ -35,8 +36,8 @@ class Image
 	end
 
 	def parse_instagram(location, last_time)
-		@last_time = last_time
-		@search = Location::GoogleAPI.new
+		@last_time = last_time.to_i - 60
+		@search = Location::GoogleAPI.new	
 		@location_data = @search.set_location(location)
 		@link = "https://api.instagram.com/v1/media/search?lat=#{@location_data[:lat]}&lng=#{@location_data[:lng]}&max_timestamp=#{@last_time}&access_token=#{@ACCESS_TOKEN}"
 		@data = open(@link).read
