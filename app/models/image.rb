@@ -16,17 +16,26 @@ class Image
 
 
 	def get_images
-		parse_instagram(@location)
+		parse_instagram(@location, @last_time)
 		@array = []
-		@children = @json["data"].count
+		@children = @json["data"].count - 1
 
 		@children.times do |child|
-			@array << [@json["data"][child]["images"]["standard_resolution"]["url"], @json["data"][child]["link"], @json["data"][child]["caption"]]
+			@array << [
+			@json["data"][child]["images"]["standard_resolution"]["url"], 
+			@json["data"][child]["link"], 
+			@json["data"][child]["caption"],
+			@json["data"][child]["created_time"]
+		]
 		end
-		@array
+
+		@last_time = @json["data"][@children-1]["created_time"]
+
+		return @array, @last_time
 	end
 
-	def parse_instagram(location)
+	def parse_instagram(location, last_time)
+		@last_time = last_time
 		@search = Location::GoogleAPI.new
 		@location_data = @search.set_location(location)
 		@link = "https://api.instagram.com/v1/media/search?lat=#{@location_data[:lat]}&lng=#{@location_data[:lng]}&max_timestamp=#{@last_time}&access_token=#{@ACCESS_TOKEN}"

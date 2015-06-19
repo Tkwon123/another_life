@@ -1,29 +1,26 @@
 
 
-<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
-	<div class="centerize-image">
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<%= debug @last_image %>
-		<% @count.times do |count| %>
+<div class="centerize-image">
+
+	<% @count.times do |count| %>
 		<div class="box panel panel-default">
 			<div class="image-container">
 				<%=link_to image_tag(@images[count][0]), @images[count][1] %>
 			</div>
 			<div class="panel-footer centerize">
+				<p><strong><%=Time.at(@images[count][3].to_i) %><strong></p>
+				<%=@images[count][3] %>
+				<br>
 				<% unless @images[count][2].nil? %>
 					<p><strong><%= @images[count][2]["text"] %><strong></p>
 				<% end %>
+
 			</div>
 		</div>
-		<% end %>
-	</div>
-</div>
-
+	<% end %>
+	
 <div class="centerize">
 	<%= link_to('MOAR', show_image_path(@last_time)) %>
+</div>
+
 </div>

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'images#image'
+  root 'images#index'
   get 'images', to: 'images#index'
   get 'images/:page', to: 'images#image', as: 'show_image'
 

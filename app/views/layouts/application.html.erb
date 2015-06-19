@@ -6,15 +6,18 @@
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
 	<link href='//fonts.googleapis.com/css?family=Lato:400,100italic' rel='stylesheet' type='text/css'>
+
+
 </head>
 <body>
+
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container-fluid">
 			<div class="navbar-nav">
 				<div class="row">
 					<h1 class='title'> another life </h1>
 					<p>
-					<%= form_tag(show_image_path(@last_time), method: "get") do %>
+					<%= form_tag(show_image_path(@last_time || 1), method: "get") do %>
 						<%= text_field_tag :location, params[:location], placeholder:"City, State, or Country" %>
 						<%= submit_tag "Search Location", name: nil %>
 					<% end %>
@@ -27,7 +30,16 @@
 </div>
 
 <div class="container-fluid">
+<div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<%= debug @last_time %>
 		<%= yield %>
+</div>
 </div>
 
 </body>
