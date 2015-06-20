@@ -11,6 +11,11 @@ class Image
 		@ACCESS_TOKEN = Rails.application.secrets.ACCESS_TOKEN
 	end
 
+	def set_location (location)
+		@location = location
+	end
+
+
 	def example
 		@json = "https://api.instagram.com/v1/tags/nofilter/media/recent?client_id=#{@CLIENT_ID}"
 	end
@@ -30,7 +35,11 @@ class Image
 		]
 		end
 
-		@last_time = @json["data"][@children-1]["created_time"]
+		if @json["data"][@children-1].nil?
+			@last_time = Time.now
+		else
+			@last_time = @json["data"][@children-1]["created_time"]
+		end 
 
 		return @array, @last_time
 	end

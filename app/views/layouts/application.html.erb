@@ -6,8 +6,6 @@
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
 	<link href='//fonts.googleapis.com/css?family=Lato:400,100italic' rel='stylesheet' type='text/css'>
-
-
 </head>
 <body>
 
@@ -17,7 +15,7 @@
 				<div class="row">
 					<h1 class='title'> another life </h1>
 					<p>
-					<%= form_tag(show_image_path(@last_time), method: "get") do %>
+					<%= form_tag(search_path(@location), method: "get") do %>
 						<%= text_field_tag :location, params[:location], placeholder:"City, State, or Country" %>
 						<%= submit_tag "Search Location", name: nil %>
 					<% end %>
@@ -37,7 +35,6 @@
 		<br>
 		<br>
 		<br>
-		<%= debug @location %>
 		<%= yield %>
 </div>
 </div>
