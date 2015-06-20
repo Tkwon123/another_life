@@ -13,7 +13,7 @@
 					<%=link_to image_tag(@images[count][0]), @images[count][1] %>
 				</div>
 				<div class="panel-footer centerize">
-					<p><strong><%=Time.at(@images[count][3].to_i).strftime("%A, %B %m  | %I:%M%P") %></strong></p>
+					<p><strong><%=Time.at(@images[count][3].to_i).strftime("%A, %B %m  | %l:%M%P") %></strong></p>
 					<br>
 					<% unless @images[count][2].nil? %>
 						<p><strong><%= @images[count][2]["text"] %><strong></p>
